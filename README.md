@@ -1,2 +1,1 @@
-# porfolio
-gatsby starter sortfolio
+# Gatsby Portfolio
