@@ -4,15 +4,10 @@ import {StaticQuery, graphql} from 'gatsby'
 
 import imageBackground from '../images/image-bg.png'
 
-const PositionHeader = styled.div`
-  position: absolute;
-  left: 50%;
-`
-
 const HeaderWelcome = styled.div`
   font-family: 'Cabin';
   position: relative;
-  left: -50%;
+  left: 10%;
   color: white;
   letter-spacing: 1px;
   font-size: 5rem;
@@ -20,23 +15,27 @@ const HeaderWelcome = styled.div`
   bottom: 650px;
   text-shadow: rgba(255, 255, 255, 0.15) 0px 5px 35px;
   @media (max-width: 768px) {
-    font-size: 26px;
+    font-size: 27px;
+    left: 5%;
     top: -350px;
     width: 100%;
   }
 `
 
 const HeaderPresentation = styled.div`
+  position: relative;
+  bottom: 600px;
+  left: 10%;
   font-family: 'Helvetica';
   color: rgb(255, 255, 255);
-  margin-top: 4.5rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 15px;
   @media (max-width: 768px) {
     position: absolute;
-    font-size: 17px;
+    font-size: 20px;
     width: 100%;
-    bottom: -80px;
+    left: 5%;
+    bottom: 480px;
   }
 `
 
@@ -55,17 +54,15 @@ const Header = () => (
     render={data => (
       <>
         <img src={imageBackground} alt="portfolio" className="image-bg" />
-        <PositionHeader>
-          <HeaderWelcome>
-            Hello, <br />
-            <br />
-            <br />
-            <p className="welcome">{data.site.siteMetadata.welcome}</p>
-            <HeaderPresentation>
-              <p>{data.site.siteMetadata.presentation}</p>
-            </HeaderPresentation>
-          </HeaderWelcome>
-        </PositionHeader>
+        <HeaderWelcome>
+          Hello, <br />
+          <br />
+          <br />
+          <p className="welcome">{data.site.siteMetadata.welcome}</p>
+        </HeaderWelcome>
+        <HeaderPresentation>
+          <p>{data.site.siteMetadata.presentation}</p>
+        </HeaderPresentation>
       </>
     )}
   />
