@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: 'JS ❤️',
     welcome: `I'm Nicolás Flores Montenegro.`,
-    presentation: `Javascript Developer ❤️.`
+    presentation: `Javascript Developer ❤️.`,
+    profileDescription: `The English language can not fully capture the depth and complexity of my thoughts. So I'm incorporating Emoji into my speech to better express myself. Winky face.`
   },
   plugins: [
     'gatsby-plugin-styled-components',
