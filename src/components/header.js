@@ -1,8 +1,8 @@
 import React from 'react'
+import Img from 'gatsby-image'
 import {StaticQuery, graphql} from 'gatsby'
 
 import {HeaderWelcome, HeaderPresentation} from '../styled'
-import imageBackground from '../images/image-bg.png'
 
 const Header = () => (
   <StaticQuery
@@ -14,20 +14,31 @@ const Header = () => (
             presentation
           }
         }
+        file(relativePath: {eq: "image-bg.png"}) {
+          childImageSharp {
+            fixed(width: 1500, height: 1500) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
       }
     `}
     render={data => (
       <>
-        <img src={imageBackground} alt="portfolio" className="image-bg" />
+        <Img
+          fluid={data.file.childImageSharp.fixed}
+          alt="portfolio"
+          className="image-bg"
+        />
         <HeaderWelcome>
           Hello, <br />
           <br />
           <br />
           <p className="welcome">{data.site.siteMetadata.welcome}</p>
+          <HeaderPresentation>
+            <p>{data.site.siteMetadata.presentation}</p>
+          </HeaderPresentation>
         </HeaderWelcome>
-        <HeaderPresentation>
-          <p>{data.site.siteMetadata.presentation}</p>
-        </HeaderPresentation>
       </>
     )}
   />

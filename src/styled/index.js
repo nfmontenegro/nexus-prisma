@@ -28,7 +28,7 @@ export const ProfileDescription = styled.div`
   margin: 50px 0 0 80px;
   font-family: 'Titillium Web';
   line-height: 42px;
-  color: #e7c296;
+  color: #22262a;
   @media (min-width: 320px) and (max-width: 768px) {
     font-size: 20px;
     text-align: center;
@@ -41,6 +41,7 @@ export const ContentImageProfile = styled.div`
   width: 11.5rem;
   height: auto;
   text-align: left;
+  position: relative;
   display: -webkit-inline-box;
   @media (min-width: 320px) and (max-width: 768px) {
     width: 100%;
@@ -50,36 +51,33 @@ export const ContentImageProfile = styled.div`
 `
 
 export const HeaderWelcome = styled.div`
+  position: absolute;
+  top: 300px;
+  left: 0;
   font-family: 'Cabin';
-  position: relative;
-  left: 10%;
   color: white;
+  z-index: 1000;
   letter-spacing: 1px;
   font-size: 5rem;
   width: 1200px;
-  bottom: 650px;
+  margin-left: 15px;
   text-shadow: rgba(255, 255, 255, 0.15) 0px 5px 35px;
   @media (min-width: 320px) and (max-width: 768px) {
     font-size: 27px;
-    left: 5%;
-    top: -350px;
     width: 100%;
   }
 `
 
 export const HeaderPresentation = styled.div`
-  position: relative;
-  bottom: 600px;
-  margin-left: 140px;
   font-family: 'Helvetica';
   color: rgb(255, 255, 255);
   font-size: 2.5rem;
   text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 15px;
+  position: absolute;
+  margin-top: 40px;
   @media (min-width: 320px) and (max-width: 768px) {
-    position: absolute;
     font-size: 20px;
     width: 100%;
-    margin-left: 20px;
-    bottom: 300px;
+    margin: 0;
   }
 `

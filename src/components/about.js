@@ -1,7 +1,7 @@
 import React from 'react'
+import Img from 'gatsby-image'
 import {StaticQuery, graphql} from 'gatsby'
 
-import profile from '../images/profile.png'
 import {Container, ContentImageProfile, ProfileDescription} from '../styled'
 
 const About = () => (
@@ -14,17 +14,28 @@ const About = () => (
             aboutMe
           }
         }
+        file(relativePath: {eq: "profile.png"}) {
+          childImageSharp {
+            resize(width: 100, height: 100) {
+              src
+            }
+            fluid(maxWidth: 786) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     `}
     render={data => (
       <>
         <div className="section">
+          <div className="wave" />
           <Container>
             <h1>Sobre mí</h1>
             <ContentImageProfile>
-              <img
-                src={profile}
-                alt="Nicolás Flores Montenegro"
+              <Img
+                fluid={data.file.childImageSharp.fluid}
+                alt="profile"
                 className="img-profile"
               />
               <ProfileDescription>

@@ -5,14 +5,16 @@ import Header from '../components/header'
 import About from '../components/about'
 import Stack from '../components/stack'
 
-const IndexPage = () => (
-  <>
-    <Layout>
-      <Header />
-    </Layout>
-    <About />
-    <Stack />
-  </>
-)
+const IndexPage = () => {
+  return (
+    <>
+      <Layout>
+        <Header />
+      </Layout>
+      <About />
+      <Stack />
+    </>
+  )
+}
 
 export default IndexPage

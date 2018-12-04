@@ -623,25 +623,25 @@ pre tt:after {
 }
 .section {
   width: 100%;
-  background: #22262C;
+  background: #ffff;
   padding: 40px 0;
 }
 .section h1 {
-  color:#d9e4e9;
+  color: #22262A;
 }
 .section p {
-  color: #e7c296;
+  color: #22262A;
 }
 .section2 {
   width: 100%;
-  background: #FCF9F3;
+  background: #22262C;
   padding: 40px 0;
 }
 .section2 h1 {
-  color: #22262A;
+  color:#e7c296;
 }
-.section2 p {
-  color: #22262A;
+.section2 p,ul {
+  color: #e7c296;
 }
 .layout {
   height: 900px;
@@ -649,12 +649,29 @@ pre tt:after {
 .image-bg {
   width: 100%;
   height: 900px;
+  z-index: -1000;
 }
 .img-profile {
   border-radius: 9999px;
   margin-top: 30px;
+  margin: 0 auto;
+  margin-bottom: 35px;
+  width: 100%;
 }
-
+.wave {
+  position: relative;
+}
+.wave:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 40px;
+  height: 250px;
+  background: url('https://lh4.googleusercontent.com/xFJj4t6J8C1XplJmf8VJawplFkjeGblcAP_apOb9oj3Q6rd6oeWVja19To8z0www0u-f6xfSNvC3uuw=w1440-h1596-rw');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 @media (min-width: 320px) and (max-width: 768px) {
   .image-bg {
     height: 500px;
