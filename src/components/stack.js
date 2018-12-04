@@ -36,6 +36,14 @@ const Stack = () => (
             </ul>
           </Container>
         </div>
+        <div
+          style={{
+            position: 'relative',
+            backgroundColor: 'rgb(45,45,45)',
+            overflow: 'hidden'
+          }}
+        />
+        <div className="wave2" />
       </>
     )}
   />

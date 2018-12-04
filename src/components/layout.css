@@ -667,10 +667,36 @@ pre tt:after {
   left: 0;
   width: 100%;
   bottom: 40px;
-  height: 250px;
-  background: url('https://lh4.googleusercontent.com/xFJj4t6J8C1XplJmf8VJawplFkjeGblcAP_apOb9oj3Q6rd6oeWVja19To8z0www0u-f6xfSNvC3uuw=w1440-h1596-rw');
+  height: 100px;
+  background: url('https://lh6.googleusercontent.com/R5pVi8s0ngbDDyIJEWEV0-n8s7DlVeg6do9tduR1FBtFg4dosM__K_bnqRYcRq5f0r9q1h5VvmZrdZNM9Os5=w2880-h1596-rw');
   background-size: cover;
   background-repeat: no-repeat;
+}
+.wave2{
+  background-image: url('https://lh6.googleusercontent.com/R5pVi8s0ngbDDyIJEWEV0-n8s7DlVeg6do9tduR1FBtFg4dosM__K_bnqRYcRq5f0r9q1h5VvmZrdZNM9Os5=w2880-h1596-rw');
+  background-size: 50% 35px;
+  position: absolute;
+  top: 181%;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-position: 0 bottom;
+  background-repeat: repeat-x;
+  transform-origin: center bottom;
+  opacity: 1;
+  z-index: 10;
+  animation: waves 9s linear infinite;
+}
+@keyframes waves{
+  0% {transform: translateX(0) translateZ(0) scaleY(1);}
+  0% {transform: translateX(-25%) translateZ(0) scaleY(.5);}
+  0% {transform: translateX(-50%) translateZ(0) scaleY(1);}
+}
+.copyright {
+  font-size: 15px !important;
+  text-align: center;
 }
 @media (min-width: 320px) and (max-width: 768px) {
   .image-bg {
@@ -686,4 +712,11 @@ pre tt:after {
   .img-profile {
     width: 150px;
   }
+  .wave:before {
+    height: 50px;
+  }
+  .wave2 {
+    top: 182.7%;
+  }
+
 }

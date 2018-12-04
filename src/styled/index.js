@@ -9,7 +9,7 @@ export const Container = styled.div`
   p  {
     margin-top: 20px;
     font-family: 'Titillium Web';
-    font-size: 22px;
+    font-size: 1.55rem;
     line-height: 35px;
   }
   ul {
@@ -52,15 +52,15 @@ export const ContentImageProfile = styled.div`
 
 export const HeaderWelcome = styled.div`
   position: absolute;
-  top: 300px;
+  top: 250px;
   left: 0;
   font-family: 'Cabin';
   color: white;
   z-index: 1000;
   letter-spacing: 1px;
   font-size: 5rem;
-  width: 1200px;
-  margin-left: 15px;
+  width: 1400px;
+  padding-left: 15px;
   text-shadow: rgba(255, 255, 255, 0.15) 0px 5px 35px;
   @media (min-width: 320px) and (max-width: 768px) {
     font-size: 27px;
