@@ -626,6 +626,23 @@ pre tt:after {
   background: #22262C;
   padding: 40px 0;
 }
+.section h1 {
+  color:#d9e4e9;
+}
+.section p {
+  color: #e7c296;
+}
+.section2 {
+  width: 100%;
+  background: #FCF9F3;
+  padding: 40px 0;
+}
+.section2 h1 {
+  color: #22262A;
+}
+.section2 p {
+  color: #22262A;
+}
 .layout {
   height: 900px;
 }

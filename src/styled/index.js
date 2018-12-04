@@ -3,9 +3,18 @@ import styled from 'styled-components'
 export const Container = styled.div`
   margin: 40px 120px;
   h1 {
-    color: #d9e4e9;
     font-family: 'Cabin';
     text-align: center;
+  }
+  p  {
+    margin-top: 20px;
+    font-family: 'Titillium Web';
+    font-size: 22px;
+    line-height: 35px;
+  }
+  ul {
+    font-family: 'Titillium Web';
+    text-align: left;
   }
   @media (min-width: 320px) and (max-width: 768px) {
     text-align: center;
@@ -16,7 +25,7 @@ export const Container = styled.div`
 export const ProfileDescription = styled.div`
   font-size: 1.55rem;
   width: 900px;
-  margin: 50px 0 0 100px;
+  margin: 50px 0 0 80px;
   font-family: 'Titillium Web';
   line-height: 42px;
   color: #e7c296;
@@ -29,7 +38,7 @@ export const ProfileDescription = styled.div`
 `
 
 export const ContentImageProfile = styled.div`
-  width: 9rem;
+  width: 11.5rem;
   height: auto;
   text-align: left;
   display: -webkit-inline-box;
@@ -70,7 +79,7 @@ export const HeaderPresentation = styled.div`
     position: absolute;
     font-size: 20px;
     width: 100%;
-    left: 5%;
-    bottom: 480px;
+    margin-left: 20px;
+    bottom: 300px;
   }
 `

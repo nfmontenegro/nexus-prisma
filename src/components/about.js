@@ -11,6 +11,7 @@ const About = () => (
         site {
           siteMetadata {
             profileDescription
+            aboutMe
           }
         }
       }
@@ -19,7 +20,7 @@ const About = () => (
       <>
         <div className="section">
           <Container>
-            <h1>About</h1>
+            <h1>Sobre mí</h1>
             <ContentImageProfile>
               <img
                 src={profile}
@@ -30,6 +31,7 @@ const About = () => (
                 {data.site.siteMetadata.profileDescription}
               </ProfileDescription>
             </ContentImageProfile>
+            <p>{data.site.siteMetadata.aboutMe}</p>
           </Container>
         </div>
       </>

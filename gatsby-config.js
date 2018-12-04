@@ -3,7 +3,8 @@ module.exports = {
     title: 'JS ❤️',
     welcome: `I'm Nicolás Flores Montenegro.`,
     presentation: `Javascript Developer ❤️.`,
-    profileDescription: `The English language can not fully capture the depth and complexity of my thoughts. So I'm incorporating Emoji into my speech to better express myself. Winky face.`
+    profileDescription: `Soy un programador con 6 años de experiencia, me gusta todo lo que tenga que ver con Javascript y actualmente aprendiendo sobre Programación Funcional.`,
+    aboutMe: `Me apasiona todo lo que tenga que ver con tecnología de programación, me encanta programar en mis proyectos personales en mis tiempos libres y leer foros como Medium o revisar Pull's Request/Commits en los perfiles de programadores avanzados en Github, aprender sobre las últimas actualizaciones del Stack que manejo`
   },
   plugins: [
     'gatsby-plugin-styled-components',
