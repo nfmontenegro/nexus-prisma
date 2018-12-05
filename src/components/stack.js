@@ -20,7 +20,7 @@ const Stack = () => (
         <div className="section2">
           <Container>
             <h1>Stack</h1>
-            <p>Actualmente manejo muchas tecnologías basadas en Javascript</p>
+            <p>Actualmente manejo muchas tecnologías basadas en Javascript.</p>
             <ul>
               <li>Javascript</li>
               <li>Nodejs</li>

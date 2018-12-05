@@ -634,14 +634,14 @@ pre tt:after {
 }
 .section2 {
   width: 100%;
-  background: #22262C;
+  background: #512da8;
   padding: 40px 0;
 }
 .section2 h1 {
-  color:#e7c296;
+  color:#fff;
 }
 .section2 p,ul {
-  color: #e7c296;
+  color: #fafafa;
 }
 .layout {
   height: 900px;
