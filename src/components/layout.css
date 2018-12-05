@@ -676,7 +676,7 @@ pre tt:after {
   background-image: url('https://lh6.googleusercontent.com/R5pVi8s0ngbDDyIJEWEV0-n8s7DlVeg6do9tduR1FBtFg4dosM__K_bnqRYcRq5f0r9q1h5VvmZrdZNM9Os5=w2880-h1596-rw');
   background-size: 50% 35px;
   position: absolute;
-  top: 181%;
+  top: 177%;
   bottom: 0px;
   right: 0px;
   left: 0px;
@@ -716,7 +716,7 @@ pre tt:after {
     height: 50px;
   }
   .wave2 {
-    top: 182.7%;
+    top: 170%;
   }
 
 }

@@ -9,7 +9,7 @@ export const Container = styled.div`
   p  {
     margin-top: 20px;
     font-family: 'Titillium Web';
-    font-size: 1.55rem;
+    font-size: 1.4rem;
     line-height: 35px;
   }
   ul {
@@ -23,14 +23,13 @@ export const Container = styled.div`
 `
 
 export const ProfileDescription = styled.div`
-  font-size: 1.55rem;
+  font-size: 1.4rem;
   width: 900px;
   margin: 50px 0 0 80px;
   font-family: 'Titillium Web';
-  line-height: 42px;
+  line-height: 35px;
   color: #22262a;
   @media (min-width: 320px) and (max-width: 768px) {
-    font-size: 20px;
     text-align: center;
     width: 100%;
     margin: 0px;

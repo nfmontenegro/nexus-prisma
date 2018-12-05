@@ -16,8 +16,8 @@ const Header = () => (
         }
         file(relativePath: {eq: "image-bg.png"}) {
           childImageSharp {
-            fixed(width: 1500, height: 1500) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -26,7 +26,7 @@ const Header = () => (
     render={data => (
       <>
         <Img
-          fluid={data.file.childImageSharp.fixed}
+          fluid={data.file.childImageSharp.fluid}
           alt="portfolio"
           className="image-bg"
         />
