@@ -636,6 +636,7 @@ pre tt:after {
   width: 100%;
   background: #512da8;
   padding: 40px 0;
+  font-size: 1.2rem;
 }
 .section2 h1 {
   color:#fff;
