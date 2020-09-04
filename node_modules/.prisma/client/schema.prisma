@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Comments {
+  uuid      String    @id
+  postId    Int?
+  comment   String?
+  userId    Int?
+  createdAt DateTime
+  updatedAt DateTime
+  deletedAt DateTime?
+}
+
+model Posts {
+  uuid      String    @id
+  title     String?
+  content   String?
+  userId    String
+  createdAt DateTime
+  updatedAt DateTime
+  deletedAt DateTime?
+}
+
+model SequelizeMeta {
+  name String @id
+}
+
+model Users {
+  uuid      String    @id
+  name      String
+  lastname  String
+  email     String
+  password  String
+  createdAt DateTime
+  updatedAt DateTime
+  deletedAt DateTime?
+}
