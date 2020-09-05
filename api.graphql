@@ -2,6 +2,11 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
@@ -15,7 +20,7 @@ The `JSON` scalar type represents JSON objects as specified by [ECMA-404](http:/
 scalar Json
 
 type Mutation {
-  createDraft(email: String!, lastname: String!, name: String!, password: String!, uuid: String!): User
+  signup(email: String!, lastname: String, name: String, password: String!): AuthPayload
 }
 
 type Query {
@@ -23,9 +28,12 @@ type Query {
 }
 
 type User {
+  createdAt: DateTime
+  deletedAt: DateTime
   email: String
   lastname: String
   name: String
   password: String
+  updateAt: DateTime
   uuid: String
 }

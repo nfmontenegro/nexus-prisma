@@ -1,11 +1,12 @@
 {
-  "name": "portfolio",
+  "name": "nexus",
   "version": "1.0.0",
-  "description": "",
+  "description": "nexus plugin prisma",
   "main": "index.js",
   "scripts": {
     "dev": "nexus dev",
-    "build": "nexus build"
+    "build": "nexus build",
+    "migrate": "./node_modules/@prisma migrate save --experimental && ./node_modules/@prisma migrate up --experimental"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,11 @@
   },
   "homepage": "https://github.com/nfmontenegro/portfolio#readme",
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "nexus": "^0.26.1",
     "nexus-plugin-prisma": "^0.18.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.0"
   }
 }
