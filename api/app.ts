@@ -1,7 +1,11 @@
+import { use } from "nexus";
 import { schema } from "nexus";
-import { db } from "./db";
+import { prisma } from "nexus-plugin-prisma";
+
+use(prisma());
+
 schema.addToContext(() => {
   return {
-    db,
+    hello: "hi",
   };
 });
