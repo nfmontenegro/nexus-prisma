@@ -23,6 +23,16 @@ type Mutation {
   signup(email: String!, lastname: String, name: String, password: String!): AuthPayload
 }
 
+type Post {
+  content: String
+  createdAt: DateTime
+  deletedAt: DateTime
+  title: String
+  updateAt: DateTime
+  userId: String
+  uuid: String
+}
+
 type Query {
   users: [User!]!
 }
@@ -31,9 +41,9 @@ type User {
   createdAt: DateTime
   deletedAt: DateTime
   email: String
+  id: String
   lastname: String
   name: String
   password: String
   updateAt: DateTime
-  uuid: String
 }
