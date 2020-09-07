@@ -9,8 +9,8 @@ export const Mutation = schema.mutationType({
       args: {
         name: schema.stringArg(),
         lastname: schema.stringArg(),
-        email: schema.stringArg({ nullable: false }),
-        password: schema.stringArg({ nullable: false })
+        email: schema.stringArg({ required: true }),
+        password: schema.stringArg({ required: true })
       },
       resolve: async (_, args, ctx) => signUp(args, ctx)
     });

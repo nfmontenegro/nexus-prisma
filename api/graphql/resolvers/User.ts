@@ -3,16 +3,16 @@ import { hash } from "bcryptjs";
 import { User, UserCreateInput } from "@prisma/client";
 
 import { SALT, APP_SECRET } from "../../config";
-import { Context } from "../../interfaces/Context";
+import { Context, AuthPayload } from "../../interfaces";
 
-const signUp = async (args: UserCreateInput, ctx: Context) => {
-  const userValid = await ctx.db.user.findOne({
+const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload> => {
+  const userExist = await ctx.db.user.findOne({
     where: {
       email: args.email
     }
   });
 
-  if (userValid) throw new Error(`User ${args.email} already exist!`);
+  if (userExist) throw new Error(`User ${args.email} already exist!`);
 
   const hashedPassword = await hash(args.password, SALT);
 
