@@ -1,9 +1,9 @@
 import { sign } from "jsonwebtoken";
-import { hash } from "bcryptjs";
+import { hash, compare } from "bcryptjs";
 import { User, UserCreateInput } from "@prisma/client";
 
 import { SALT, APP_SECRET } from "../../config";
-import { Context, AuthPayload } from "../../interfaces";
+import { Context, AuthPayload, SignInInput } from "../../interfaces";
 
 const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload> => {
   const userExist = await ctx.db.user.findOne({
@@ -26,4 +26,19 @@ const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload>
   };
 };
 
-export { signUp };
+const signIn = async (args: SignInInput, ctx: Context): Promise<AuthPayload> => {
+  const { email, password } = args;
+
+  const userValid: User | null = await ctx.db.user.findOne({ where: { email } });
+  if (!userValid) throw new Error(`User ${email} doesn't exist!`);
+
+  const isValidPassword = await compare(password, userValid.password);
+  if (!isValidPassword) throw new Error(`Password not valid`);
+
+  return {
+    token: sign({ userId: userValid.id }, APP_SECRET as string, { expiresIn: "5m" }),
+    user: userValid
+  };
+};
+
+export { signUp, signIn };

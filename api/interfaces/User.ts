@@ -5,4 +5,9 @@ interface AuthPayload {
   user: User;
 }
 
-export { AuthPayload };
+type SignInInput = {
+  email: string;
+  password: string;
+};
+
+export { AuthPayload, SignInInput };

@@ -3,7 +3,7 @@ import { schema } from "nexus";
 export const Post = schema.objectType({
   name: "Post",
   definition(t) {
-    t.string("uuid");
+    t.string("id");
     t.string("title");
     t.string("content");
     t.string("userId");
