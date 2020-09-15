@@ -14,10 +14,10 @@ const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload>
 
   if (userExist) throw new Error(`User ${args.email} already exist!`);
 
-  const hashedPassword = await hash(args.password, SALT);
+  const password = await hash(args.password, SALT);
 
   const user: User = await ctx.db.user.create({
-    data: { ...args, password: hashedPassword } as UserCreateInput
+    data: { ...args, password } as UserCreateInput
   });
 
   return {
