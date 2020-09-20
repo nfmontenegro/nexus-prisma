@@ -41,10 +41,10 @@ type Query {
 type User {
   createdAt: DateTime
   deletedAt: DateTime
-  email: String
+  email: String!
   id: String
   lastname: String
   name: String
-  password: String
+  password: String!
   updateAt: DateTime
 }

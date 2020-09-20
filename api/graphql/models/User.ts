@@ -6,8 +6,8 @@ export const User = schema.objectType({
     t.string("id");
     t.string("name");
     t.string("lastname");
-    t.string("email");
-    t.string("password");
+    t.string("email", { nullable: false });
+    t.string("password", { nullable: false });
     t.date("createdAt");
     t.date("updateAt");
     t.date("deletedAt");
