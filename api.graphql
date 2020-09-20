@@ -35,6 +35,7 @@ type Post {
 }
 
 type Query {
+  me: User
   users: [User!]!
 }
 

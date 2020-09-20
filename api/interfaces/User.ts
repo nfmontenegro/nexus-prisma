@@ -5,9 +5,15 @@ interface AuthPayload {
   user: User;
 }
 
+interface TokenPayload {
+  userId: string;
+  iat: number;
+  exp: number;
+}
+
 type SignInInput = {
   email: string;
   password: string;
 };
 
-export { AuthPayload, SignInInput };
+export { AuthPayload, SignInInput, TokenPayload };

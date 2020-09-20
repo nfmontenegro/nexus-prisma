@@ -35,8 +35,8 @@ model SequelizeMeta {
 
 model User {
   id         String      @id @default(uuid())
-  name       String
-  lastname   String
+  name       String?
+  lastname   String?
   email      String      @unique
   password   String
   createdAt  DateTime    @default(now())

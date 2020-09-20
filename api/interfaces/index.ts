@@ -1,4 +1,4 @@
 import { Context } from "./Context";
-import { AuthPayload, SignInInput } from "./User";
+import { AuthPayload, SignInInput, TokenPayload } from "./User";
 
-export { Context, AuthPayload, SignInInput };
+export { Context, AuthPayload, SignInInput, TokenPayload };

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { use } from "nexus";
 import { prisma } from "nexus-plugin-prisma";
-import { shield, deny, allow } from "nexus-plugin-shield";
+import { shield } from "nexus-plugin-shield";
 
 import { rules } from "./graphql/plugins/shield";
 

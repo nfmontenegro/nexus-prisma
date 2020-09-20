@@ -2,24 +2,27 @@ import { rule, allow, not } from "nexus-plugin-shield";
 import { verify } from "jsonwebtoken";
 
 import { APP_SECRET } from "../../config";
+import { TokenPayload } from "../../interfaces";
 
 const getUserId = (context: any | null | undefined) => {
   const headerAuthorization = context.req.headers.authorization;
   if (headerAuthorization) {
     const token = headerAuthorization.replace("Bearer ", "");
-    const verifiedToken = verify(token, APP_SECRET as string);
+    const verifiedToken = verify(token, APP_SECRET as string) as TokenPayload;
+    context.userId = verifiedToken.userId;
     return verifiedToken && verifiedToken.userId;
   }
 };
 
 const isAuthenticated = rule({ cache: "contextual" })(async (parent, args, ctx, info) => {
-  const userId: boolean = getUserId(ctx);
+  const userId = getUserId(ctx);
   return Boolean(userId);
 });
 
 const rules = {
   Query: {
-    users: isAuthenticated
+    users: isAuthenticated,
+    me: isAuthenticated
   },
   Mutations: {
     signin: allow,

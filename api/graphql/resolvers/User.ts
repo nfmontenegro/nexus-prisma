@@ -41,4 +41,11 @@ const signIn = async (args: SignInInput, ctx: Context): Promise<AuthPayload> => 
   };
 };
 
-export { signUp, signIn };
+const me = async (ctx: Context): Promise<User | null> => {
+  const userId = ctx.userId;
+  return ctx.db.user.findOne({ where: { id: userId } });
+};
+
+const getAllUsers = async (ctx: Context): Promise<User[] | null> => ctx.db.user.findMany();
+
+export { signUp, signIn, me, getAllUsers };
