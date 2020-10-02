@@ -1,48 +1,11 @@
-import { sign } from "jsonwebtoken";
-import { hash, compare } from "bcryptjs";
-import { User, UserCreateInput } from "@prisma/client";
+import { UserCreateInput } from "@prisma/client";
 
-import { SALT, APP_SECRET } from "../../config";
 import { Context, AuthPayload, SignInInput } from "../../interfaces";
+import handler from "../handlers/user";
 
-const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload> => {
-  const userExist = await ctx.db.user.findOne({
-    where: {
-      email: args.email
-    }
-  });
-
-  if (userExist) throw new Error(`User ${args.email} already exist!`);
-
-  const password = await hash(args.password, SALT);
-
-  const user: User = await ctx.db.user.create({
-    data: { ...args, password } as UserCreateInput
-  });
-
-  return {
-    token: sign({ userId: user.id }, APP_SECRET as string, { expiresIn: "5m" }),
-    user
-  };
-};
-
-const signIn = async (args: SignInInput, ctx: Context): Promise<AuthPayload> => {
-  const { email, password } = args;
-
-  const userValid: User | null = await ctx.db.user.findOne({ where: { email } });
-  if (!userValid) throw new Error(`User ${email} doesn't exist!`);
-
-  const isValidPassword = await compare(password, userValid.password);
-  if (!isValidPassword) throw new Error(`Password not valid`);
-
-  return {
-    token: sign({ userId: userValid.id }, APP_SECRET as string, { expiresIn: "5m" }),
-    user: userValid
-  };
-};
-
-const me = async (ctx: Context): Promise<User | null> => ctx.db.user.findOne({ where: { id: ctx.userId } });
-
-const getAllUsers = async (ctx: Context): Promise<User[] | null> => ctx.db.user.findMany();
+const me = async (ctx: Context) => ctx.db.user.findOne({ where: { id: ctx.userId } });
+const getAllUsers = async (ctx: Context) => ctx.db.user.findMany();
+const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload> => handler.signUp(args, ctx);
+const signIn = async (args: SignInInput, ctx: Context): Promise<AuthPayload> => handler.signIn(args, ctx);
 
 export { signUp, signIn, me, getAllUsers };
