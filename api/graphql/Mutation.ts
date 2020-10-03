@@ -13,7 +13,7 @@ export const Mutation = schema.mutationType({
         email: schema.stringArg({ required: true }),
         password: schema.stringArg({ required: true })
       },
-      resolve: async (_, args, ctx: NexusContext) => signUp(args, ctx)
+      resolve: async (_, args, ctx: Context) => signUp(args, ctx)
     });
     t.field("signin", {
       type: "AuthPayload",
@@ -21,7 +21,7 @@ export const Mutation = schema.mutationType({
         email: schema.stringArg({ required: true }),
         password: schema.stringArg({ required: true })
       },
-      resolve: async (_, args, ctx: NexusContext) => signIn(args, ctx)
+      resolve: async (_, args, ctx: Context) => signIn(args, ctx)
     });
   }
 });

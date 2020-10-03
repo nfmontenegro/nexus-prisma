@@ -11,9 +11,9 @@ interface TokenPayload {
   exp: number;
 }
 
-type SignInInput = {
+interface SignInInput {
   email: string;
   password: string;
-};
+}
 
 export { AuthPayload, SignInInput, TokenPayload };
