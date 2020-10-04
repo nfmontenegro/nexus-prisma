@@ -7,8 +7,6 @@ import { rules } from "./graphql/plugins/shield";
 
 dotenv.config();
 
-use(prisma());
-
 use(
   shield({
     rules,
@@ -18,3 +16,5 @@ use(
     }
   })
 );
+
+use(prisma());

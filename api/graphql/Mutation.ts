@@ -1,6 +1,6 @@
 import { schema } from "nexus";
 
-import { Context } from "../interfaces";
+import { AuthPayload, Context } from "../interfaces";
 import { signUp, signIn } from "./resolvers/User";
 
 export const Mutation = schema.mutationType({
@@ -13,7 +13,7 @@ export const Mutation = schema.mutationType({
         email: schema.stringArg({ required: true }),
         password: schema.stringArg({ required: true })
       },
-      resolve: async (_, args, ctx: Context) => signUp(args, ctx)
+      resolve: async (_, args, ctx: Context): Promise<AuthPayload> => signUp(args, ctx)
     });
     t.field("signin", {
       type: "AuthPayload",
@@ -21,7 +21,7 @@ export const Mutation = schema.mutationType({
         email: schema.stringArg({ required: true }),
         password: schema.stringArg({ required: true })
       },
-      resolve: async (_, args, ctx: Context) => signIn(args, ctx)
+      resolve: async (_, args, ctx: Context): Promise<AuthPayload> => signIn(args, ctx)
     });
   }
 });

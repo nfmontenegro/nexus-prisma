@@ -26,6 +26,7 @@
       140
     ],
     "member-access": false,
+    "no-submodule-imports": false,
     "member-ordering": [
       true,
       {
@@ -41,15 +42,11 @@
     "no-bitwise": true,
     "no-console": false,
     "no-construct": true,
-    "no-debugger": true,
+    "no-debugger": false,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-implicit-dependencies": [
-      true,
-      "dev"
-    ],
     "no-inferrable-types": [
       true,
       "ignore-params"
@@ -65,6 +62,7 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "no-var-requires": false,
+    "no-implicit-dependencies": false,
     "object-literal-sort-keys": false,
     "one-line": [
       true,
@@ -125,10 +123,7 @@
     ],
     "typedef": [
       true,
-      "call-signature",
-      "parameter",
       "arrow-call-signature",
-      "arrow-parameter",
       "property-declaration"
     ],
     "no-consecutive-blank-lines": true
