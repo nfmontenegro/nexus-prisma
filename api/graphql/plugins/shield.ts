@@ -4,7 +4,7 @@ import { verify } from "jsonwebtoken";
 import { APP_SECRET } from "../../config";
 import { TokenPayload } from "../../interfaces";
 
-const getUserId = (context: any | null | undefined) => {
+const getUserId = (context: any | null | undefined): any => {
   const headerAuthorization = context.req.headers.authorization;
   if (headerAuthorization) {
     const token = headerAuthorization.replace("Bearer ", "");
@@ -14,10 +14,12 @@ const getUserId = (context: any | null | undefined) => {
   }
 };
 
-const isAuthenticated = rule({ cache: "contextual" })(async (parent, args, ctx, info) => {
-  const userId = getUserId(ctx);
-  return Boolean(userId);
-});
+const isAuthenticated = rule({ cache: "contextual" })(
+  async (parent, args, ctx, info): Promise<boolean> => {
+    const userId = getUserId(ctx);
+    return Boolean(userId);
+  }
+);
 
 const rules = {
   Query: {
