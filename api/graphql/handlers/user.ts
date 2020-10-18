@@ -16,7 +16,10 @@ const signUp = async (args: UserCreateInput, ctx: any): Promise<AuthPayload> => 
 
   const password = await hash(args.password, SALT);
   const user: User = await ctx.db.user.create({
-    data: { ...args, password }
+    data: {
+      ...args,
+      password
+    }
   });
   return {
     token: sign({ userId: user.id }, APP_SECRET as string, { expiresIn: "5m" }),

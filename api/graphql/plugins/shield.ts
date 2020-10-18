@@ -1,4 +1,4 @@
-import { rule, allow, not } from "nexus-plugin-shield";
+import { rule, allow } from "nexus-plugin-shield";
 import { verify } from "jsonwebtoken";
 
 import { APP_SECRET } from "../../config";
@@ -14,7 +14,7 @@ const getUserId = (context: any | null | undefined): any => {
   }
 };
 
-const isAuthenticated = rule({ cache: "contextual" })(
+const isAuthenticated = rule()(
   async (parent, args, ctx, info): Promise<boolean> => {
     const userId = getUserId(ctx);
     return Boolean(userId);
@@ -26,9 +26,10 @@ const rules = {
     users: isAuthenticated,
     me: isAuthenticated
   },
-  Mutations: {
-    signin: allow,
-    signup: allow
+  Mutation: {
+    signIn: allow,
+    signUp: allow,
+    createPost: isAuthenticated
   }
 };
 

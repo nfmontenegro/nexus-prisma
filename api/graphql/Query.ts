@@ -1,8 +1,8 @@
 import { schema } from "nexus";
-import { User, UserCreateInput } from "@prisma/client";
+import { User } from "@prisma/client";
 
 import { me, getAllUsers } from "./resolvers/User";
-import { Context, InputPagination } from "../interfaces";
+import { Context } from "../interfaces";
 
 export const Query = schema.queryType({
   definition(t) {
@@ -19,7 +19,7 @@ export const Query = schema.queryType({
         arguments: schema.stringArg()
       },
       list: true,
-      resolve: async (_, args: InputPagination, ctx: Context): Promise<User[]> => getAllUsers(args, ctx)
+      resolve: async (_, args, ctx: Context): Promise<User[]> => getAllUsers(args, ctx)
     });
   }
 });
