@@ -13,6 +13,10 @@ const context = {
 const mockInputPost = { title: "hi", content: "hi" };
 
 describe("createPost #post handler", (): void => {
+  afterEach((): void => {
+    mockCreatePost.mockClear();
+  });
+
   it("should return success when create a post", async (): Promise<void> => {
     mockCreatePost.mockResolvedValue({ ...mockInputPost, userId: context.userId });
 
@@ -35,5 +39,16 @@ describe("createPost #post handler", (): void => {
         }
       }
     });
+  });
+
+  it("should return error if create post query failed", async (): Promise<void> => {
+    try {
+      mockCreatePost.mockRejectedValue("An error ocurred");
+      await handler.createPost(mockInputPost, context);
+    } catch (error) {
+      expect(error).toEqual("An error ocurred");
+      expect(mockCreatePost).toHaveBeenCalled();
+      expect(mockCreatePost).toHaveBeenCalledTimes(1);
+    }
   });
 });
