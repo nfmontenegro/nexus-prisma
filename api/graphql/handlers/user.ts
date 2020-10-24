@@ -31,8 +31,10 @@ const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
   const { email, password } = args;
   const userValid = await ctx.db.user.findOne({ where: { email } });
   if (!userValid) throw new Error(`User ${email} doesn't exist!`);
+
   const isValidPassword = await compare(password, userValid.password);
   if (!isValidPassword) throw new Error(`Password not valid`);
+
   return {
     token: sign({ userId: userValid.id }, APP_SECRET as string, { expiresIn: "30m" }),
     user: userValid

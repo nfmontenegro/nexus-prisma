@@ -16,4 +16,20 @@ const createPost = async (args: CreatePostInput, ctx: any): Promise<Post> => {
   return post;
 };
 
-export default { createPost };
+const deletePost = async (args: any, ctx: any): Promise<string> => {
+  const { id: postId } = args;
+
+  const postDeleted = await ctx.db.post
+    .delete({
+      where: {
+        id: postId
+      }
+    })
+    .catch((): string => {
+      throw new Error(`Record ${postId} does not exist`);
+    });
+
+  return postDeleted.id;
+};
+
+export default { createPost, deletePost };

@@ -3,7 +3,7 @@ import { Post, PostCreateInput } from "@prisma/client";
 
 import { AuthPayload, Context, CreatePostInput } from "../interfaces";
 import { signUp, signIn } from "./resolvers/User";
-import { createPost } from "./resolvers/Post";
+import { createPost, deletePost } from "./resolvers/Post";
 
 export const Mutation = schema.mutationType({
   definition(t) {
@@ -32,6 +32,13 @@ export const Mutation = schema.mutationType({
         content: schema.stringArg()
       },
       resolve: async (_, args, ctx: Context): Promise<Post> => createPost(args, ctx)
+    });
+    t.field("deletePost", {
+      type: "String",
+      args: {
+        id: schema.stringArg({ required: true })
+      },
+      resolve: async (_, args, ctx: Context): Promise<string> => deletePost(args, ctx)
     });
   }
 });

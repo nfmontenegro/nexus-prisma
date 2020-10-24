@@ -29,7 +29,8 @@ const rules = {
   Mutation: {
     signIn: allow,
     signUp: allow,
-    createPost: isAuthenticated
+    createPost: isAuthenticated,
+    deletePost: isAuthenticated
   }
 };
 
