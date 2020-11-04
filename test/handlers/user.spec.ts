@@ -1,4 +1,4 @@
-import handler from "../../api/graphql/handlers/user";
+import { getAllUsers, me, signIn, signUp } from "../../api/graphql/resolvers/user";
 import { users } from "./__mocks__/user";
 
 const mockFindManyUser = jest.fn();
@@ -33,7 +33,7 @@ describe("getAllUsers  #user handler", (): void => {
 
   it("should return all users paginated", async (): Promise<void> => {
     mockFindManyUser.mockResolvedValue(users);
-    const response = await handler.getAllUsers(pagination, context);
+    const response = await getAllUsers(pagination, context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("data");
 
@@ -45,7 +45,7 @@ describe("getAllUsers  #user handler", (): void => {
   it("should return error if failed", async (): Promise<void> => {
     try {
       mockFindManyUser.mockRejectedValue(errorMessage);
-      await handler.getAllUsers(pagination, context);
+      await getAllUsers(pagination, context);
     } catch (error) {
       expect(error).toEqual(errorMessage);
       expect(mockFindManyUser).toHaveBeenCalled();
@@ -58,7 +58,7 @@ describe("getAllUsers  #user handler", (): void => {
 describe("me #user handler", (): void => {
   it("should return user", async (): Promise<void> => {
     mockFindOneUser.mockResolvedValue(users.data.users[0]);
-    const response = await handler.me(context);
+    const response = await me(context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("name");
     expect(response).toHaveProperty("lastname");
@@ -71,7 +71,7 @@ describe("me #user handler", (): void => {
   it("should return error if failed", async (): Promise<void> => {
     try {
       mockFindOneUser.mockRejectedValue(errorMessage);
-      await handler.me(context);
+      await me(context);
     } catch (error) {
       expect(error).toEqual(errorMessage);
       expect(mockFindOneUser).toHaveBeenCalled();
@@ -87,7 +87,7 @@ describe("signIn #user handler", (): void => {
     mockFindOneUser.mockResolvedValue(users.data.users[0]);
     mockCompareBcrypt.mockResolvedValue(true);
 
-    const response = await handler.signIn(credentials, context);
+    const response = await signIn(credentials, context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("token");
     expect(response).toHaveProperty("user");
@@ -105,7 +105,7 @@ describe("signIn #user handler", (): void => {
     mockFindOneUser.mockResolvedValue(false);
 
     try {
-      await handler.signIn(credentials, context);
+      await signIn(credentials, context);
     } catch (error) {
       expect(error.message).toEqual("User x@gmail.com doesn't exist!");
       expect(mockFindOneUser).toHaveBeenCalled();
@@ -120,7 +120,7 @@ describe("signIn #user handler", (): void => {
     mockCompareBcrypt.mockResolvedValue(false);
 
     try {
-      await handler.signIn(credentials, context);
+      await signIn(credentials, context);
     } catch (error) {
       expect(error.message).toEqual("Password not valid");
       expect(mockFindOneUser).toHaveBeenCalled();
@@ -139,7 +139,7 @@ describe("signUp #user handler", (): void => {
     mockCreateUser.mockResolvedValue(users.data.users[0]);
     mockHashBcrypt.mockResolvedValue("password");
 
-    const response = await handler.signUp(credentials, context);
+    const response = await signUp(credentials, context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("token");
     expect(response).toHaveProperty("user");
@@ -157,7 +157,7 @@ describe("signUp #user handler", (): void => {
     mockFindOneUser.mockResolvedValue(true);
 
     try {
-      await handler.signUp(credentials, context);
+      await signUp(credentials, context);
     } catch (error) {
       expect(error.message).toEqual("User x@gmail.com already exist!");
       expect(mockFindOneUser).toHaveBeenCalled();

@@ -1,4 +1,4 @@
-import handler from "../../api/graphql/handlers/post";
+import { createPost } from "../../api/graphql/resolvers/post";
 
 const mockCreatePost = jest.fn();
 const context = {
@@ -20,7 +20,7 @@ describe("createPost #post handler", (): void => {
   it("should return success when create a post", async (): Promise<void> => {
     mockCreatePost.mockResolvedValue({ ...mockInputPost, userId: context.userId });
 
-    const response = await handler.createPost(mockInputPost, context);
+    const response = await createPost(mockInputPost, context);
 
     expect(response).toHaveProperty("userId");
     expect(response).toHaveProperty("content");
@@ -44,7 +44,7 @@ describe("createPost #post handler", (): void => {
   it("should return error if create post query failed", async (): Promise<void> => {
     try {
       mockCreatePost.mockRejectedValue("An error ocurred");
-      await handler.createPost(mockInputPost, context);
+      await createPost(mockInputPost, context);
     } catch (error) {
       expect(error).toEqual("An error ocurred");
       expect(mockCreatePost).toHaveBeenCalled();

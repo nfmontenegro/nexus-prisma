@@ -1,7 +1,7 @@
 import { schema } from "nexus";
 import { User } from "@prisma/client";
 
-import { me, getAllUsers } from "./resolvers/User";
+import { me, getAllUsers } from "./resolvers/user";
 import { Context } from "../interfaces";
 
 export const Query = schema.queryType({

@@ -1,9 +1,9 @@
 import { schema } from "nexus";
-import { Post, PostCreateInput } from "@prisma/client";
+import { Post } from "@prisma/client";
 
-import { AuthPayload, Context, CreatePostInput } from "../interfaces";
-import { signUp, signIn } from "./resolvers/User";
-import { createPost, deletePost } from "./resolvers/Post";
+import { AuthPayload, Context } from "../interfaces";
+import { signUp, signIn } from "./resolvers/user";
+import { createPost, deletePost } from "./resolvers/post";
 
 export const Mutation = schema.mutationType({
   definition(t) {
