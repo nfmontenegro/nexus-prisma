@@ -19,15 +19,11 @@ const createPost = async (args: CreatePostInput, ctx: any): Promise<Post> => {
 const deletePost = async (args: any, ctx: any): Promise<string> => {
   const { id: postId } = args;
 
-  const postDeleted = await ctx.db.post
-    .delete({
-      where: {
-        id: postId
-      }
-    })
-    .catch((): string => {
-      throw new Error(`Record ${postId} does not exist`);
-    });
+  const postDeleted = await ctx.db.post.delete({
+    where: {
+      id: postId
+    }
+  });
 
   return postDeleted.id;
 };

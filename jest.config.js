@@ -9,10 +9,9 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
   collectCoverageFrom: [
-    "api/graphql/handlers/*.ts",
+    "api/graphql/resolvers/*.ts",
     "!api/graphql/models/*/*.ts",
     "!api/graphql/plugins/*.ts",
-    "!api/graphql/resolvers/*.ts",
     "!api/graphql/Mutation.ts",
     "!api/graphql/Query.ts"
   ],

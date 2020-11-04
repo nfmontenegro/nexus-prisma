@@ -1,20 +1,23 @@
-import { createPost } from "../../api/graphql/resolvers/post";
+import { createPost, deletePost } from "../../api/graphql/resolvers/post";
 
 const mockCreatePost = jest.fn();
+const mockDeletePost = jest.fn();
 const context = {
   db: {
     post: {
-      create: mockCreatePost
+      create: mockCreatePost,
+      delete: mockDeletePost
     }
   },
   userId: "35733704-1877-4937-8c39-fc18a7190b47"
 };
 
-const mockInputPost = { title: "hi", content: "hi" };
+const mockInputPost = { id: "1", title: "hi", content: "hi" };
 
-describe("createPost #post handler", (): void => {
+describe("createPost #post resolver", (): void => {
   afterEach((): void => {
     mockCreatePost.mockClear();
+    mockDeletePost.mockClear();
   });
 
   it("should return success when create a post", async (): Promise<void> => {
@@ -49,6 +52,31 @@ describe("createPost #post handler", (): void => {
       expect(error).toEqual("An error ocurred");
       expect(mockCreatePost).toHaveBeenCalled();
       expect(mockCreatePost).toHaveBeenCalledTimes(1);
+    }
+  });
+});
+
+describe("deletePost #post resolver", (): void => {
+  it("should return success if the user is deleted", async (): Promise<void> => {
+    mockDeletePost.mockResolvedValue({ id: "1" });
+
+    const response = await deletePost(mockInputPost, context);
+
+    expect(response).toEqual("1");
+
+    expect(mockDeletePost).toHaveBeenCalled();
+    expect(mockDeletePost).toHaveBeenCalledTimes(1);
+    expect(mockDeletePost).toHaveBeenCalledWith({ where: { id: mockInputPost.id } });
+  });
+
+  it("should return error if delete post have a error", async (): Promise<void> => {
+    try {
+      mockDeletePost.mockRejectedValue("An error ocurred");
+      await deletePost(mockInputPost, context);
+    } catch (error) {
+      expect(error).toEqual("An error ocurred");
+      expect(mockDeletePost).toHaveBeenCalled();
+      expect(mockDeletePost).toHaveBeenCalledTimes(1);
     }
   });
 });
