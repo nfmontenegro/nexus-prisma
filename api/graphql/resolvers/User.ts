@@ -30,6 +30,7 @@ const signUp = async (args: UserCreateInput, ctx: any): Promise<AuthPayload> => 
 const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
   const { email, password } = args;
   const userValid = await ctx.db.user.findOne({ where: { email } });
+  console.log("@@ user valid", userValid);
   if (!userValid) throw new Error(`User ${email} doesn't exist!`);
 
   const isValidPassword = await compare(password, userValid.password);

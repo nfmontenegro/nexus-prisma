@@ -3,10 +3,10 @@ import { schema } from "nexus";
 export const Post = schema.objectType({
   name: "Post",
   definition(t) {
-    t.string("id");
-    t.string("title");
+    t.string("id", { nullable: false });
+    t.string("title", { nullable: false });
     t.string("content");
-    t.string("userId");
+    t.string("userId", { nullable: false });
     t.date("createdAt");
     t.date("updateAt");
     t.date("deletedAt");

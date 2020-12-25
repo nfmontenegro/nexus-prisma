@@ -38,6 +38,7 @@ type Post {
 
 type Query {
   me: User
+  posts(arguments: String, limit: Int, offset: Int): [Post!]
   users(arguments: String, limit: Int, offset: Int): [User!]!
 }
 
