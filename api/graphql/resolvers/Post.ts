@@ -21,7 +21,8 @@ const createPost = async (args: CreatePostInput, ctx: any): Promise<Post> => {
 };
 
 const getAllPosts = async (args: any, ctx: any): Promise<Post[]> => {
-  const posts = await ctx.db.post.findMany({ ...args });
+  const { limit = 10, offset = 0 } = args;
+  const posts = await ctx.db.post.findMany({ take: limit, skip: offset });
   return posts;
 };
 

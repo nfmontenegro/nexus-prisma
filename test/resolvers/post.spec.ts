@@ -1,12 +1,15 @@
-import { createPost, deletePost } from "../../api/graphql/resolvers/post";
+import { createPost, deletePost, getAllPosts } from "../../api/graphql/resolvers/post";
+import { posts as mockDataPosts } from "./__mocks__/posts";
 
 const mockCreatePost = jest.fn();
 const mockDeletePost = jest.fn();
+const mockFindManyPost = jest.fn();
 const context = {
   db: {
     post: {
       create: mockCreatePost,
-      delete: mockDeletePost
+      delete: mockDeletePost,
+      findMany: mockFindManyPost
     }
   },
   userId: "35733704-1877-4937-8c39-fc18a7190b47"
@@ -78,5 +81,30 @@ describe("deletePost #post resolver", (): void => {
       expect(mockDeletePost).toHaveBeenCalled();
       expect(mockDeletePost).toHaveBeenCalledTimes(1);
     }
+  });
+});
+
+describe("getAllPost #post resolver", (): void => {
+  it("should return all posts with specific arguments", async (): Promise<void> => {
+    mockFindManyPost.mockResolvedValue(mockDataPosts);
+    const paginationArguments = { limit: 20, offset: 1 };
+    const response = await getAllPosts(paginationArguments, context);
+
+    expect(typeof response).toBe("object");
+
+    expect(mockFindManyPost).toHaveBeenCalled();
+    expect(mockFindManyPost).toHaveBeenCalledTimes(1);
+    expect(mockFindManyPost).toHaveBeenCalledWith({ take: 20, skip: 1 });
+  });
+
+  it("should return all posts with default arguments", async (): Promise<void> => {
+    mockFindManyPost.mockResolvedValue(mockDataPosts);
+    const response = await getAllPosts({}, context);
+
+    expect(typeof response).toBe("object");
+
+    expect(mockFindManyPost).toHaveBeenCalled();
+    expect(mockFindManyPost).toHaveBeenCalledTimes(1);
+    expect(mockFindManyPost).toHaveBeenCalledWith({ take: 10, skip: 0 });
   });
 });

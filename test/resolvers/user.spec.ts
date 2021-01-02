@@ -1,5 +1,5 @@
 import { getAllUsers, me, signIn, signUp } from "../../api/graphql/resolvers/user";
-import { users } from "./__mocks__/user";
+import { users as mockDataUsers } from "./__mocks__/users";
 
 const mockFindManyUser = jest.fn();
 const mockFindOneUser = jest.fn();
@@ -32,7 +32,7 @@ describe("getAllUsers  #user handler", (): void => {
   const pagination = { limit: 1, offset: 1 };
 
   it("should return all users paginated", async (): Promise<void> => {
-    mockFindManyUser.mockResolvedValue(users);
+    mockFindManyUser.mockResolvedValue(mockDataUsers);
     const response = await getAllUsers(pagination, context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("data");
@@ -57,7 +57,7 @@ describe("getAllUsers  #user handler", (): void => {
 
 describe("me #user handler", (): void => {
   it("should return user", async (): Promise<void> => {
-    mockFindOneUser.mockResolvedValue(users.data.users[0]);
+    mockFindOneUser.mockResolvedValue(mockDataUsers.data.users[0]);
     const response = await me(context);
     expect(response).toBeTruthy();
     expect(response).toHaveProperty("name");
@@ -84,7 +84,7 @@ describe("me #user handler", (): void => {
 describe("signIn #user handler", (): void => {
   const credentials = { email: "x@gmail.com", password: "123xxx" };
   it("should signin user", async (): Promise<void> => {
-    mockFindOneUser.mockResolvedValue(users.data.users[0]);
+    mockFindOneUser.mockResolvedValue(mockDataUsers.data.users[0]);
     mockCompareBcrypt.mockResolvedValue(true);
 
     const response = await signIn(credentials, context);
@@ -98,7 +98,7 @@ describe("signIn #user handler", (): void => {
 
     expect(mockCompareBcrypt).toHaveBeenCalled();
     expect(mockCompareBcrypt).toHaveBeenCalledTimes(1);
-    expect(mockCompareBcrypt).toHaveBeenCalledWith(credentials.password, users.data.users[0].password);
+    expect(mockCompareBcrypt).toHaveBeenCalledWith(credentials.password, mockDataUsers.data.users[0].password);
   });
 
   it("should return error if email doesn't exist", async (): Promise<void> => {
@@ -116,7 +116,7 @@ describe("signIn #user handler", (): void => {
   });
 
   it("should return error if password is not valid", async (): Promise<void> => {
-    mockFindOneUser.mockResolvedValue(users.data.users[0]);
+    mockFindOneUser.mockResolvedValue(mockDataUsers.data.users[0]);
     mockCompareBcrypt.mockResolvedValue(false);
 
     try {
@@ -136,7 +136,7 @@ describe("signUp #user handler", (): void => {
   const credentials = { email: "x@gmail.com", password: "x" };
   it("should signin user", async (): Promise<void> => {
     mockFindOneUser.mockResolvedValue(null);
-    mockCreateUser.mockResolvedValue(users.data.users[0]);
+    mockCreateUser.mockResolvedValue(mockDataUsers.data.users[0]);
     mockHashBcrypt.mockResolvedValue("password");
 
     const response = await signUp(credentials, context);

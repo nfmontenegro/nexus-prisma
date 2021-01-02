@@ -30,7 +30,6 @@ const signUp = async (args: UserCreateInput, ctx: any): Promise<AuthPayload> => 
 const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
   const { email, password } = args;
   const userValid = await ctx.db.user.findOne({ where: { email } });
-  console.log("@@ user valid", userValid);
   if (!userValid) throw new Error(`User ${email} doesn't exist!`);
 
   const isValidPassword = await compare(password, userValid.password);
@@ -43,8 +42,9 @@ const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
 };
 
 const getAllUsers = async (args: InputPagination, ctx: any): Promise<User[]> => {
-  const { limit = 10, offset = 1 } = args;
-  return ctx.db.user.findMany({ skip: offset, take: limit });
+  const { limit = 10, offset = 0 } = args;
+  const users = await ctx.db.user.findMany({ skip: offset, take: limit });
+  return users;
 };
 
 const me = async (ctx: any): Promise<User | null> => ctx.db.user.findOne({ where: { id: ctx.userId } });
