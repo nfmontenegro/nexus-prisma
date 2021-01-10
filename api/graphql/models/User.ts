@@ -8,8 +8,9 @@ export const User = schema.objectType({
     t.string("lastname");
     t.string("email", { nullable: false });
     t.string("password", { nullable: false });
-    t.date("createdAt");
-    t.date("updateAt");
-    t.date("deletedAt");
+    t.string("isActive");
+    t.field("createdAt", { type: "DateTime" });
+    t.field("updateAt", { type: "DateTime" });
+    t.field("deletedAt", { type: "DateTime" });
   }
 });

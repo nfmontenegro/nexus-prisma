@@ -20,7 +20,7 @@ The `JSON` scalar type represents JSON objects as specified by [ECMA-404](http:/
 scalar Json
 
 type Mutation {
-  createPost(content: String, title: String): Post
+  createPost(content: String!, title: String!): Post
   deletePost(id: String!): String
   signIn(email: String!, password: String!): AuthPayload
   signUp(email: String!, lastname: String, name: String, password: String!): AuthPayload
@@ -32,7 +32,7 @@ type Post {
   createdAt: DateTime
   deletedAt: DateTime
   id: String!
-  title: String!
+  title: String
   updateAt: DateTime
   userId: String!
 }
@@ -48,6 +48,7 @@ type User {
   deletedAt: DateTime
   email: String!
   id: String
+  isActive: String
   lastname: String
   name: String
   password: String!

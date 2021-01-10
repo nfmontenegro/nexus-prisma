@@ -41,6 +41,12 @@ model User {
   password   String
   createdAt  DateTime    @default(now())
   updatedAt  DateTime?   @default(now())
-  deletedAt  DateTime?
+  deletedAt  DateTime ?
+  isActive   Status      @default(ACTIVE)
   posts      Post[]
+}
+
+enum Status {
+  ACTIVE
+  DISABLED
 }

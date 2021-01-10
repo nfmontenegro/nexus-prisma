@@ -2,6 +2,14 @@
   "version": "0.3.14-fixed",
   "steps": [
     {
+      "tag": "CreateEnum",
+      "enum": "Status",
+      "values": [
+        "ACTIVE",
+        "DISABLED"
+      ]
+    },
+    {
       "tag": "CreateSource",
       "source": "db"
     },
@@ -467,14 +475,14 @@
       "model": "User",
       "field": "name",
       "type": "String",
-      "arity": "Required"
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "User",
       "field": "lastname",
       "type": "String",
-      "arity": "Required"
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -571,6 +579,38 @@
       "field": "deletedAt",
       "type": "DateTime",
       "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "isActive",
+      "type": "Status",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "isActive"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "isActive"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "ACTIVE"
     },
     {
       "tag": "CreateField",

@@ -28,8 +28,8 @@ export const Mutation = schema.mutationType({
     t.field("createPost", {
       type: "Post",
       args: {
-        title: schema.stringArg(),
-        content: schema.stringArg()
+        title: schema.stringArg({ required: true }),
+        content: schema.stringArg({ required: true })
       },
       resolve: async (_, args, ctx: Context): Promise<Post> => createPost(args, ctx)
     });
