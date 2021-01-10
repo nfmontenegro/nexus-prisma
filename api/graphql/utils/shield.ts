@@ -30,7 +30,8 @@ const rules = {
     signIn: allow,
     signUp: allow,
     createPost: isAuthenticated,
-    deletePost: isAuthenticated
+    deletePost: isAuthenticated,
+    updateUser: isAuthenticated
   }
 };
 

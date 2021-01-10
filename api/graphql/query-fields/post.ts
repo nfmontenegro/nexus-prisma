@@ -1,7 +1,7 @@
 import { schema } from "nexus";
 import { Post } from "@prisma/client";
 
-import { getAllPosts } from "../resolvers/Post";
+import { getAllPosts } from "../resolvers/post";
 import { Context, InputPagination } from "../../interfaces";
 
 export const getAllPostsQueryField = {

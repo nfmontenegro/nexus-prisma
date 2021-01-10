@@ -1,8 +1,8 @@
 import { schema } from "nexus";
-import { Post } from "@prisma/client";
+import { Post, User } from "@prisma/client";
 
 import { AuthPayload, Context } from "../interfaces";
-import { signUp, signIn } from "./resolvers/user";
+import { signUp, signIn, updateUser } from "./resolvers/user";
 import { createPost, deletePost } from "./resolvers/post";
 
 export const Mutation = schema.mutationType({
@@ -39,6 +39,14 @@ export const Mutation = schema.mutationType({
         id: schema.stringArg({ required: true })
       },
       resolve: async (_, args, ctx: Context): Promise<string> => deletePost(args, ctx)
+    });
+    t.field("updateUser", {
+      type: "User",
+      args: {
+        name: schema.stringArg(),
+        lastname: schema.stringArg()
+      },
+      resolve: async (_, args, ctx: Context): Promise<User> => updateUser(args, ctx)
     });
   }
 });
