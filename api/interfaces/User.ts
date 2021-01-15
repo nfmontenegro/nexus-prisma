@@ -1,9 +1,10 @@
 import { User } from "@prisma/client";
 
-interface AuthPayload {
+// tslint:disable-next-line: interface-over-type-literal
+type AuthPayload = {
   token: string;
   user: User;
-}
+};
 
 interface TokenPayload {
   userId: string;
@@ -16,4 +17,11 @@ interface SignInInput {
   password: string;
 }
 
-export { AuthPayload, SignInInput, TokenPayload };
+interface SignUpInput {
+  name: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
+
+export { AuthPayload, SignInInput, TokenPayload, SignUpInput };

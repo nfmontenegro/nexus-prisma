@@ -1,12 +1,12 @@
 import { sign } from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
-import { User, UserCreateInput, UserUpdateInput } from "@prisma/client";
+import { User, UserCreateInput, UserUpdateInput, FindManyUserArgs } from "@prisma/client";
 
 import { SALT, APP_SECRET } from "../../config";
-import { AuthPayload, InputPagination, SignInInput } from "../../interfaces";
+import { AuthPayload, SignInInput, Context } from "../../interfaces";
 import { ValidationError } from "../utils/custom-errors";
 
-const signUp = async (args: UserCreateInput, ctx: any): Promise<AuthPayload> => {
+const signUp = async (args: UserCreateInput, ctx: Context): Promise<AuthPayload> => {
   const userExist = await ctx.db.user.findOne({
     where: {
       email: args.email
@@ -28,7 +28,7 @@ const signUp = async (args: UserCreateInput, ctx: any): Promise<AuthPayload> => 
   };
 };
 
-const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
+const signIn = async (args: SignInInput, ctx: Context): Promise<AuthPayload> => {
   const { email, password } = args;
 
   const userValid = await ctx.db.user.findOne({ where: { email } });
@@ -43,16 +43,16 @@ const signIn = async (args: SignInInput, ctx: any): Promise<AuthPayload> => {
   };
 };
 
-const getAllUsers = async (args: InputPagination, ctx: any): Promise<User[]> => {
-  const { limit = 10, offset = 0 } = args;
+const getAllUsers = async (args: FindManyUserArgs, ctx: Context): Promise<User[]> => {
+  const { skip = 10, take = 0 } = args;
 
-  const users = await ctx.db.user.findMany({ skip: offset, take: limit });
+  const users = await ctx.db.user.findMany({ skip, take });
   return users;
 };
 
 const me = async (ctx: any): Promise<User | null> => ctx.db.user.findOne({ where: { id: ctx.userId } });
 
-const updateUser = async (args: UserUpdateInput, ctx: any): Promise<User> => {
+const updateUser = async (args: UserUpdateInput, ctx: Context): Promise<User> => {
   const user = await ctx.db.user.update({
     where: { id: ctx.userId },
     data: args

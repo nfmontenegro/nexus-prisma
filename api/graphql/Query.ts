@@ -5,8 +5,8 @@ import { getAllPostsQueryField } from "./query-fields/post";
 
 export const Query = schema.queryType({
   definition(t) {
-    t.field("me", { type: "User", ...meQueryField });
-    t.field("users", { type: "User", list: true, ...getAllUsersQueryField });
-    t.field("posts", { type: "Post", list: true, ...getAllPostsQueryField });
+    t.field("me", meQueryField);
+    t.field("users", getAllUsersQueryField);
+    t.field("posts", getAllPostsQueryField);
   }
 });

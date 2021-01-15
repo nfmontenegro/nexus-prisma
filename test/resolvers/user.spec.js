@@ -25,7 +25,10 @@ const context = {
       create: mockCreateUser
     }
   },
-  userId: "35733704-1877-4937-8c39-fc18a7190b47"
+  userId: "35733704-1877-4937-8c39-fc18a7190b47",
+  log: jest.fn(),
+  req: jest.fn(),
+  res: jest.fn()
 };
 
 describe("getAllUsers  #user handler", (): void => {

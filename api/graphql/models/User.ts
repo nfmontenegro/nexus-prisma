@@ -1,6 +1,6 @@
 import { schema } from "nexus";
 
-export const User = schema.objectType({
+export default schema.objectType({
   name: "User",
   definition(t) {
     t.string("id");

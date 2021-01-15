@@ -1,13 +1,9 @@
-import { Post } from "@prisma/client";
+import { Post, PostWhereUniqueInput, PostCreateWithoutUserInput, FindManyPostArgs } from "@prisma/client";
 
-import { CreatePostInput } from "../../interfaces";
+import { Context, InputPagination } from "../../interfaces";
 
-interface DeletePostArgument {
-  id: string;
-}
-
-const createPost = async (args: CreatePostInput, ctx: any): Promise<Post> => {
-  const post = await ctx.db.post.create({
+const createPost = async (args: PostCreateWithoutUserInput, ctx: Context): Promise<Post> =>
+  ctx.db.post.create({
     data: {
       ...args,
       user: {
@@ -17,16 +13,14 @@ const createPost = async (args: CreatePostInput, ctx: any): Promise<Post> => {
       }
     }
   });
-  return post;
-};
 
-const getAllPosts = async (args: any, ctx: any): Promise<Post[]> => {
-  const { limit = 10, offset = 0 } = args;
-  const posts = await ctx.db.post.findMany({ take: limit, skip: offset });
+const getAllPosts = async (args: FindManyPostArgs, ctx: Context): Promise<Post[]> => {
+  const { skip, take } = args;
+  const posts = await ctx.db.post.findMany({ take, skip });
   return posts;
 };
 
-const deletePost = async (args: DeletePostArgument, ctx: any): Promise<string> => {
+const deletePost = async (args: PostWhereUniqueInput, ctx: Context): Promise<string> => {
   const { id: postId } = args;
 
   const postDeleted = await ctx.db.post.delete({

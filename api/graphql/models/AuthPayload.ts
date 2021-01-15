@@ -1,6 +1,6 @@
 import { schema } from "nexus";
 
-schema.objectType({
+export default schema.objectType({
   name: "AuthPayload",
   definition(t) {
     t.string("token");

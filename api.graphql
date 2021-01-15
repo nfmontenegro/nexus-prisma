@@ -39,8 +39,8 @@ type Post {
 
 type Query {
   me: User
-  posts(arguments: String, limit: Int, offset: Int): [Post!]!
-  users(arguments: String, limit: Int, offset: Int): [User!]!
+  posts(limit: Int, offset: Int): Post!
+  users(skip: Int, take: Int): User!
 }
 
 type User {
